@@ -120,6 +120,7 @@ end
 #   return player_rebounds
 # end
 
+<<<<<<< HEAD
 
 def big_shoe_rebounds
 biggest_shoe = 0
@@ -127,6 +128,15 @@ player_rebounds = 0
 game_hash.values.each do |team_info|
 team_info[:players].each do |player|
 
+=======
+
+def big_shoe_rebounds
+biggest_shoe = 0
+player_rebounds = 0
+game_hash.values.each do |team_info|
+team_info[:players].each do |player|
+
+>>>>>>> 94f6ffb11fff6dc2d3695da374cddb90a214e05c
   shoe = player[:shoe]
   
   if shoe > biggest_shoe
@@ -153,6 +163,7 @@ def most_points_scored
 end
 return points_owner
 end
+<<<<<<< HEAD
 
 # def winning_team
 # total_points = 0
@@ -235,3 +246,88 @@ if most_steals? == player_with_longest_name?
 return true
 end
 end
+=======
+
+# def winning_team
+# total_points = 0
+# winner_team = ""
+
+# game_hash.values.each do |team_info|
+# team_info[:players].each do |player|
+# total_points += player[:points]
+# winner_team = team_info[:team_name]
+# end
+# end
+# return winner_team
+
+# end
+
+def winning_team
+  total_points = 0
+  win_team = ''
+  game_hash.each do |home_away, keys|
+    team_points = 0
+    team_name = game_hash[home_away][:team_name]
+    keys[:players].each do |player|
+      points = player[:points]
+      team_points += points
+    end
+    win_team, total_points = team_name, team_points if team_points > total_points
+  end
+  return win_team
+end
+
+# def player_with_longest_name
+#   longest = ''
+#   longest_length = 0
+#   game_hash.values.each do |team_info|
+#     team_info[:players].each do |player|
+#       name_length = player[:player_name].length
+#       if name_length > longest_length
+#       longest_length = name_length 
+#       longest = player[:player_name]
+#       end
+#     end
+#   end
+#   return longest
+# end
+
+def player_with_longest_name?
+  longest = ""
+  length = 0
+  game_hash.values.each do |team_info|
+    team_info[:players].each do |player|
+      if player[:player_name].length > length
+        length = player[:player_name].length
+        longest = player[:player_name]
+      end
+    end
+  end
+  return longest
+end
+
+
+
+ 
+ 
+def most_steals?
+  steal = 0
+  most_steals_player = ""
+  game_hash.values.each do |team_info|
+    team_info[:players].each do |player|
+      if player[:steals] > steal
+        steal = player[:steals]
+        most_steals_player = player[:player_name]
+      end
+    end
+  end
+  return most_steals_player
+end
+
+def long_name_steals_a_ton?
+if most_steals? == player_with_longest_name?
+return true
+end
+end
+
+>>>>>>> 94f6ffb11fff6dc2d3695da374cddb90a214e05c
